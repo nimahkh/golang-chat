@@ -20,7 +20,7 @@ func main() {
 	router.DELETE("/room/:roomid/:user", roomDELETE)
 	router.GET("/stream/:roomid/:user", stream)
 
-	router.Run(":8082")
+	router.Run()
 }
 
 func stream(c *gin.Context) {
@@ -47,7 +47,7 @@ func roomGET(c *gin.Context) {
 	c.HTML(http.StatusOK, "chat_room", gin.H{
 		"roomid": roomid,
 		"userid": userid,
-		"isme": isme,
+		"isme":   isme,
 	})
 }
 
