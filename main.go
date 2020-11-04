@@ -12,7 +12,8 @@ var roomManager *Manager
 func main() {
 	roomManager = NewRoomManager()
 	router := gin.Default()
-	router.SetHTMLTemplate(Html)
+	//router.SetHTMLTemplate(Html)
+	router.LoadHTMLGlob("template/*")
 	router.Use(static.Serve("/assets", static.LocalFile("./assets", true)))
 
 	router.GET("/room/:roomid/:user", roomGET)
@@ -20,7 +21,7 @@ func main() {
 	router.DELETE("/room/:roomid/:user", roomDELETE)
 	router.GET("/stream/:roomid/:user", stream)
 
-	router.Run()
+	router.Run(":8082")
 }
 
 func stream(c *gin.Context) {
@@ -44,7 +45,7 @@ func roomGET(c *gin.Context) {
 	roomid := c.Param("roomid")
 	userid := c.Param("user")
 	isme := c.Param("user")
-	c.HTML(http.StatusOK, "chat_room", gin.H{
+	c.HTML(http.StatusOK, "index.html", gin.H{
 		"roomid": roomid,
 		"userid": userid,
 		"isme":   isme,

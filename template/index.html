@@ -1,0 +1,77 @@
+<html>
+<head>
+    <title>golang- room id is {{.roomid}}</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Itim">
+    <link rel="stylesheet" type="text/css" href="https://meyerweb.com/eric/tools/css/reset/reset.css">
+    <link rel="stylesheet" type="text/css" href="/assets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+    <script src="http://malsup.github.io/jquery.form.js"></script>
+    <script>
+        $('#message_form').focus();
+        $(document).ready(function () {
+            const alarm = document.getElementById('play');
+            // bind 'myForm' and provide a simple callback function
+            $('#myForm').submit(function(e) {
+                // submit the form
+                e.preventDefault()
+                if($('#message_form').val()===""){
+                    return false
+                }
+                $(this).ajaxSubmit();
+                $('#message_form').val('');
+                $('#message_form').focus();
+                // return false to prevent normal browser submit and page navigation
+                return false;
+            });
+            // $('#myForm').ajaxForm(function (e) {
+            //     console.log(e)
+            //     console.log($('#message_form').val(''))
+            //     $('#message_form').val('');
+            //     $('#message_form').focus();
+            // });
+            if (!!window.EventSource) {
+                var source = new EventSource('/stream/{{.roomid}}/{{.userid}}');
+                source.addEventListener('message', function (e) {
+                    const userName = e.data.split(":")[0];
+                    const date = new Date();
+                    const today = `${date.toLocaleDateString()} ${date.getHours()}:${date.getMinutes()}`
+                    const darker = userName ==={{.isme}} && "darker"
+                    const rightTime= userName ==={{.isme}} ? "right" : "left"
+                    const time = "<br/><div class='"+rightTime+"'>"+today+"</div>"
+                    const data = "<div class='container " + darker + "'>" + e.data + time+"</div>"
+                    $('#messages').append(data + "</br>");
+                    $('html, body').animate({scrollTop: $(document).height()}, 'slow');
+                    if ({{.isme}} !==userName)
+                    {
+                        alarm.volume = 0.3
+                        alarm.play()
+                    }
+                }, false);
+            } else {
+                alert("NOT SUPPORTED");
+            }
+        });
+    </script>
+</head>
+<body>
+<audio id="play" src="/assets/alarm.mp3" preload="auto"></audio>
+<div class="main-container">
+    <div id="messages"></div>
+    <form id="myForm" action="/room/{{.roomid}}/{{.userid}}" method="post">
+        <div class="row">
+            <hr>
+            <div class="col-25">
+                <input hidden id="user_form" type="text" name="user" value="{{.userid}}">
+                <label>Message:</label>
+            </div>
+            <div class="col-75">
+                <input id="message_form" type="text" name="message">
+            </div>
+            <div class="col-25"></div>
+            <div class="col-75"><input type="submit" value="Submit"> </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
