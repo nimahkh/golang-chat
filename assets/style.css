@@ -1,0 +1,66 @@
+body{
+    font-family: "Itim";
+    background-color: #eee
+}
+
+.main-container{
+    border: 2px solid #dedede;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0 auto;
+    width: 50%;
+    margin-top: 20px
+}
+
+.main-container form{
+    margin-top: 30px
+}
+
+.container {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+}
+/* Darker chat container */
+.darker {
+    border-color: #7b7b7b;
+    background-color: #8d8484;
+    color: #fff
+}
+
+/* Clear floats */
+.container::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Style images */
+.container img {
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+/* Style the right image */
+.container img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+}
+
+/* Style time text */
+.right {
+    float: right;
+    color: #aaa;
+}
+
+/* Style time text */
+.left {
+    float: left;
+    color: #999;
+}
