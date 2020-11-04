@@ -7,10 +7,10 @@ var Html = template.Must(template.New("chat_room").Parse(`
 <head> 
     <title>{{.roomid}}</title>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Itim">
-    <link rel="stylesheet" type="text/css" href="http://meyerweb.com/eric/tools/css/reset/reset.css">
+    <link rel="stylesheet" type="text/css" href="https://meyerweb.com/eric/tools/css/reset/reset.css">
     <link rel="stylesheet" type="text/css" href="/assets/style.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
-    <script src="http://malsup.github.com/jquery.form.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
+    <script src="https://malsup.github.com/jquery.form.js"></script> 
     <script> 
         $('#message_form').focus();
         $(document).ready(function() { 
