@@ -1,8 +1,8 @@
 package controller
 
 import (
-	m "gin/chat/manager"
 	"github.com/gin-gonic/gin"
+	m "github.com/nimahkh/golang-chat/manager"
 	"io"
 	"net/http"
 )

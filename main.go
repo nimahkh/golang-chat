@@ -1,10 +1,10 @@
 package main
 
 import (
-	"gin/chat/controller"
-	m "gin/chat/manager"
 	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
+	"github.com/nimahkh/golang-chat/controller"
+	m "github.com/nimahkh/golang-chat/manager"
 )
 
 var roomManager *m.Manager
