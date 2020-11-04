@@ -28,5 +28,5 @@ func main() {
 		controller.Stream(context, roomManager)
 	})
 
-	router.Run()
+	router.Run(":8082")
 }
