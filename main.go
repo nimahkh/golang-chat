@@ -21,7 +21,7 @@ func main() {
 	router.DELETE("/room/:roomid/:user", roomDELETE)
 	router.GET("/stream/:roomid/:user", stream)
 
-	router.Run(":8082")
+	router.Run()
 }
 
 func stream(c *gin.Context) {
